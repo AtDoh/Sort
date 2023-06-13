@@ -12,6 +12,8 @@ namespace sort
 #include<bubble.hpp>
 #include<selection.hpp>
 #include<insertion.hpp>
+#include<quick.hpp>
+#include<heap.hpp>
 
 }
 #endif

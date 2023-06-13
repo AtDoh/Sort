@@ -40,5 +40,26 @@ struct greater_equal
     }
 };
 
+template<typename T,typename Comp>
+struct comparison_type
+{
+    using type=pred::less<T>;
+};
+template<typename T>
+struct comparison_type<T,pred::less_equal<T> >
+{
+    using type=pred::less_equal<T>;
+};
+template<typename T>
+struct comparison_type<T,pred::greater<T> >
+{
+    using type=pred::greater<T>;
+};
+template<typename T>
+struct comparison_type<T,pred::greater_equal<T> >
+{
+    using type=pred::greater_equal<T>;
+};
+
 }
 #endif

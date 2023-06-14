@@ -14,6 +14,7 @@ namespace sort
 #include<insertion.hpp>
 #include<quick.hpp>
 #include<heap.hpp>
+#include<merge.hpp>
 
 }
 #endif

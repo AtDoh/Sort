@@ -10,12 +10,12 @@ template<typename It,typename Comp>
 requires std::random_access_iterator<It>
 It partition(It begin,It end,Comp comp)
 {
-    if(begin==end||next(begin)==end) return end;
-    It pivot=begin,left=next(begin),right=prev(end);
+    if(begin==end||std::next(begin)==end) return end;
+    It pivot=begin,left=std::next(begin),right=std::prev(end);
     while(left<=right)
     {
-        while(left<=right&&comp(*left,*pivot)) left=next(left);
-        while(left<=right&&!comp(*right,*pivot)) right=prev(right);
+        while(left<=right&&comp(*left,*pivot)) left=std::next(left);
+        while(left<=right&&!comp(*right,*pivot)) right=std::prev(right);
         if(left<=right) std::iter_swap(left,right);
     }
     std::iter_swap(right,pivot);
@@ -32,6 +32,7 @@ void quick(It begin,It end,Comp comp=pred::less<>())
 {
     It pivot=sort::partition(begin,end,comp);
     if(pivot==end) return;
+    // pivot 의 자리는 확정되었음으로 그 좌/우 의 구간들을 정렬해야함.
     quick(begin,pivot,comp);
     quick(next(pivot),end,comp);
 }
